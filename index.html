@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Require + Knockout + Vue example project</title>
+  <style>
+    .component {
+        border: 1px solid gray;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .todo-item {
+        cursor: pointer;
+    }
+
+    .todo-item:hover {
+        background: lightgray;
+    }
+  </style>
+</head>
+<body>
+    <div class="component">
+        <h3>Knockout component</h3>
+        <p>First name: <input data-bind="value: koFirstName, valueUpdate: 'keyup'" /></p>
+        <p>Last name: <input data-bind="value: koLastName, valueUpdate: 'keyup'" /></p>
+        <p data-bind="text: fullName"></p>
+
+        <div class="component" data-bind="vue: { data: vueData }">
+            <h3>Vue component with dynamic data binding from Knockout component</h3>
+            <welcome-component class="component"
+                               :first-name="firstName"
+                               :last-name="lastName"
+           ></welcome-component>
+        </div>
+
+        <div class="component" data-bind="vue: { data: vueData, watch: vueWatch }">
+            <h3>Vue component with two-way data binding with Knockout component</h3>
+            <p>First name: <input v-model="firstName" /></p>
+            <p>Last name: <input v-model="lastName" /></p>
+        </div>
+
+        <div class="component" data-bind="vue: {}">
+            <h3>Vue component independent from Knockout data</h3>
+            <todo-list></todo-list>
+        </div>
+    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js" data-main="src/app.js"></script>
+</body>
+</html>
