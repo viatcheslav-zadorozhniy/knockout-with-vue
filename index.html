@@ -24,11 +24,11 @@
 <body>
     <div class="component">
         <h3>Knockout component</h3>
-        <p>First name: <input data-bind="value: koFirstName, valueUpdate: 'keyup'" /></p>
-        <p>Last name: <input data-bind="value: koLastName, valueUpdate: 'keyup'" /></p>
+        <p>First name: <input data-bind="value: firstName, valueUpdate: 'keyup'" /></p>
+        <p>Last name: <input data-bind="value: lastName, valueUpdate: 'keyup'" /></p>
         <p data-bind="text: fullName"></p>
 
-        <div class="component" data-bind="vue: { data: vueData }">
+        <!-- <div class="component" data-bind="vue: { data: vueData }">
             <h3>Vue component with dynamic data binding from Knockout component</h3>
             <welcome-component class="component"
                                :first-name="firstName"
@@ -37,6 +37,20 @@
         </div>
 
         <div class="component" data-bind="vue: { data: vueData, watch: vueWatch }">
+            <h3>Vue component with two-way data binding with Knockout component</h3>
+            <p>First name: <input v-model="firstName" /></p>
+            <p>Last name: <input v-model="lastName" /></p>
+        </div> -->
+
+        <div class="component" data-bind="vue: { autoBindData: true }">
+            <h3>Vue component with dynamic data binding from Knockout component</h3>
+            <welcome-component class="component"
+                               :first-name="firstName"
+                               :last-name="lastName"
+           ></welcome-component>
+        </div>
+
+        <div class="component" data-bind="vue: { autoBind: true }">
             <h3>Vue component with two-way data binding with Knockout component</h3>
             <p>First name: <input v-model="firstName" /></p>
             <p>Last name: <input v-model="lastName" /></p>
